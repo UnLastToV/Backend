@@ -47,20 +47,20 @@ exports.findAll = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    const id = req.params.id;
-    Tutorial.findByPk(id)
+    const Number = req.params.Number;
+    Tutorial.findByPk(Number)
         .then(data => {
             if(data){
                 res.send(data);
             }else{
                 res.status(404).send({
-                    message : "Error 404" + id
+                    message : "Error 404" + Number
                 })
             }
         })
         .catch(Error => {
             res.status(500).send({
-                message : "Error 500 " + id
+                message : "Error 500 " + Number
             });
         });
 };
@@ -78,8 +78,8 @@ exports.findAllFinished = (req, res) => {
 };
 
 exports.update = (req, res) => {
-    const id = req.params.id;
-    Tutorial.update(req.body, {where: {id:id}})
+    const Number = req.params.Number;
+    Tutorial.update(req.body, {where: {Number:Number}})
     .then(num => {
         if(num = 1){
             res.send({
@@ -98,8 +98,8 @@ exports.update = (req, res) => {
     })
 };
 exports.delete = (req, res) => {
-    const id = req.params.id;
-    Tutorial.destroy({where: {id:id}})
+    const Number = req.params.Number;
+    Tutorial.destroy({where: {Number:Number}})
     .then(num => {
         if(num == 1){
         res.send({

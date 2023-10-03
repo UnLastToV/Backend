@@ -1,8 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
     const Tutorial = sequelize.define("tutorial",{
-        id	: {
-            type: Sequelize.INT
-        },
         Name	: {
             type: Sequelize.STRING
         },
