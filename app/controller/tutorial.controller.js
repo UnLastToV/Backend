@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 
 exports.create = (req, res) => {
-    if(!req.body.title){
+    if(!req.body.Name){
         res.status(400).send({
             message: "COntent cannot be empty"
         })
@@ -12,9 +12,12 @@ exports.create = (req, res) => {
     }
 
     const tutorial = {
-        title: req.body.title,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
+        id: req.body.id,
+        Name: req.body.Name,
+        Lastname: req.body.Lastname,
+        University: req.body.University,
+        Finished: req.body.Finished ? req.body.Finished : false,
+        
     }
 
     Tutorial.create(tutorial)
@@ -29,8 +32,8 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    const title = req.body.title;
-    var condition = title ? {title: {[Op.like]: `%${title}%`}} : null; // ถ้ามีค่าเก็บค่า title ลงที่ {title: {[Op.like]: `%${title}%`}} แต่ถ้าไม่มีคือ null
+    const Name = req.body.Name;
+    var condition = Name ? {Name: {[Op.like]: `%${Name}%`}} : null; // ถ้ามีค่าเก็บค่า Name ลงที่ {Name: {[Op.like]: `%${Name}%`}} แต่ถ้าไม่มีคือ null
 
     Tutorial.findAll()
     .then(data => {
@@ -62,8 +65,8 @@ exports.findOne = (req, res) => {
         });
 };
 
-exports.findAllPublished = (req, res) => {
-    Tutorial.findAll({ where: { published: true}})
+exports.findAllFinished = (req, res) => {
+    Tutorial.findAll({ where: { Finished: true}})
         .then(data => {
             res.send(data);
         })
